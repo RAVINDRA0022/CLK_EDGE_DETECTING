@@ -1,0 +1,21 @@
+`timescale 1ns / 1ps
+
+module edge_detector_tb( );
+   reg clk ;
+   reg data ;
+   wire edge_detect;
+      positive_edge_detector dut ( .clk(clk), .data(data), .edge_detect(edge_detect));
+      initial  
+         begin 
+            data = 0;
+            clk = 0;
+          #15 data = 1;
+           #20 data = 0;
+            #25 data = 1;
+             #30 data = 0;
+              #40 data = 1;
+              #50 $stop;
+            end
+             always #5 clk = ~clk;
+            
+endmodule
